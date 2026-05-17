@@ -2,12 +2,16 @@ import { createRouter, createWebHistory } from 'vue-router'
 import AddPersonView from '../views/AddPersonView.vue'
 import LastPersonView from '../views/LastPersonView.vue'
 import PersonListView from '../views/PersonListView.vue'
+import HomeView from '../views/HomeView.vue'
+import AboutView from '../views/AboutView.vue'
 import NotFound404View from '../views/NotFound404View.vue'
 
 const routes = [
   { path: '/', name: 'AddPerson', component: AddPersonView, meta: { title: 'Add Person' } },
   { path: '/last', name: 'LastPerson', component: LastPersonView, meta: { title: 'Last Added' } },
   { path: '/list', name: 'PersonList', component: PersonListView, meta: { title: 'Person List' } },
+  { path: '/home', name: 'Home', component: HomeView, meta: { title: 'Home' } },
+  { path: '/about', name: 'About', component: AboutView, meta: { title: 'About' } },
   { path: '/:pathMatch(.*)*', name: 'not-found', component: NotFound404View, meta: { title: '404 Not Found' } }
 ]
 

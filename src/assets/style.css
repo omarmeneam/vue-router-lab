@@ -181,3 +181,6 @@ body {
     border-bottom: 4px solid var(--accent);
   }
 }
+
+.menu-section { margin-bottom: 20px; }
+.menu-label { padding: 0 20px 10px; font-size: 0.85em; text-transform: uppercase; color: #e0e0e0; letter-spacing: 1px; }
