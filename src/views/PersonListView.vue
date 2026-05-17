@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h2>Person List</h2>
+    <h2 class="section-title">Person List</h2>
     <div v-if="persons.length > 0">
-      <PersonCard v-for="(person, index) in persons" :key="index" :person="person" />
+      <PersonCard v-for="person in persons" :key="person.id" :person="person" />
     </div>
     <EmptyState v-else message="The person list is currently empty." />
   </div>

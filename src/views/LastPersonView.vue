@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Last Added Person</h2>
+    <h2 class="section-title">Last Added Person</h2>
     <PersonCard v-if="lastPerson" :person="lastPerson" />
     <EmptyState v-else message="No persons have been added yet." />
   </div>
