@@ -147,6 +147,15 @@ body {
   background-color: #7A1522;
 }
 
+.delete-btn {
+  background-color: #e74c3c;
+  margin-top: 10px;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b;
+}
+
 .person-card {
   border: 1px solid #ddd;
   padding: 15px;

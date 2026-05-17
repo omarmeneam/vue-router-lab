@@ -1,6 +1,6 @@
 <template>
   <footer class="footer">
-    <p>&copy; 2026 Vue Router Lab. All rights reserved.</p>
+    <p>&copy; 2026 BMI App | SECJ3483-Web Technology</p>
   </footer>
 </template>
 

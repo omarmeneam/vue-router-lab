@@ -1,7 +1,7 @@
 {
   "persons": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Ali",
       "yob": 1998,
       "age": 27,
@@ -10,13 +10,23 @@
       "bmi": 23.95
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Yusof",
       "yob": 2002,
       "age": 23,
       "weight": 77,
       "height": 177,
       "bmi": 24.58
+    },
+    {
+      "name": "Ahmad",
+      "yob": 2001,
+      "age": 24,
+      "weight": 70,
+      "height": 170,
+      "bmi": 24.22,
+      "id": "qFU5eJsGUNI"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

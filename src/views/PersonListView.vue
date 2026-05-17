@@ -1,8 +1,7 @@
-<template>
   <div>
     <h2 class="section-title">Person List</h2>
     <div v-if="persons.length > 0">
-      <PersonCard v-for="person in persons" :key="person.id" :person="person" />
+      <PersonCard v-for="person in persons" :key="person.id" :person="person" @delete="$emit('delete-person', $event)" />
     </div>
     <EmptyState v-else message="The person list is currently empty." />
   </div>

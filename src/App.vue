@@ -12,6 +12,7 @@
                 :persons="persons"
                 :last-person="lastPerson"
                 @add-person="addPerson"
+                @delete-person="deletePerson"
               />
             </transition>
           </router-view>
@@ -45,9 +46,37 @@ export default {
       return this.persons[this.persons.length - 1];
     }
   },
+  mounted() {
+    fetch('http://localhost:3000/persons')
+      .then(response => response.json())
+      .then(data => {
+        this.persons = data;
+      })
+      .catch(err => console.error('Error fetching persons:', err));
+  },
   methods: {
     addPerson(person) {
-      this.persons.push(person);
+      fetch('http://localhost:3000/persons', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(person)
+      })
+        .then(response => response.json())
+        .then(data => {
+          this.persons.push(data);
+        })
+        .catch(err => console.error('Error adding person:', err));
+    },
+    deletePerson(id) {
+      fetch(`http://localhost:3000/persons/${id}`, {
+        method: 'DELETE'
+      })
+        .then(() => {
+          this.persons = this.persons.filter(p => p.id !== id);
+        })
+        .catch(err => console.error('Error deleting person:', err));
     }
   }
 }
