@@ -1,6 +1,13 @@
+<template>
   <div>
     <h2 class="section-title">Last Added Person</h2>
-    <PersonCard v-if="lastPerson" :person="lastPerson" @delete="$emit('delete-person', $event)" />
+    <PersonCard 
+      v-if="lastPerson" 
+      :person="lastPerson" 
+      @delete="$emit('delete-person', $event)" 
+      @update="$emit('update-person', $event)" 
+      @patch="$emit('patch-person', $event)" 
+    />
     <EmptyState v-else message="No persons have been added yet." />
   </div>
 </template>

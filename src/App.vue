@@ -13,6 +13,8 @@
                 :last-person="lastPerson"
                 @add-person="addPerson"
                 @delete-person="deletePerson"
+                @update-person="updatePerson"
+                @patch-person="patchPerson"
               />
             </transition>
           </router-view>
@@ -76,6 +78,26 @@ export default {
           this.persons = this.persons.filter(p => p.id !== id);
         })
         .catch(err => console.error('Error deleting person:', err));
+    },
+    updatePerson(person) {
+      axios.put(`http://localhost:3000/persons/${person.id}`, person)
+        .then(response => {
+          const index = this.persons.findIndex(p => p.id === person.id);
+          if (index !== -1) {
+            this.persons.splice(index, 1, response.data);
+          }
+        })
+        .catch(err => console.error('Error updating person:', err));
+    },
+    patchPerson(patchData) {
+      axios.patch(`http://localhost:3000/persons/${patchData.id}`, patchData)
+        .then(response => {
+          const index = this.persons.findIndex(p => p.id === patchData.id);
+          if (index !== -1) {
+            this.persons.splice(index, 1, response.data);
+          }
+        })
+        .catch(err => console.error('Error patching person:', err));
     }
   }
 }
