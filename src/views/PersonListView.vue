@@ -1,9 +1,13 @@
+<template>
   <div>
     <h2 class="section-title">Person List</h2>
-    <div v-if="persons.length > 0">
-      <PersonCard v-for="person in persons" :key="person.id" :person="person" @delete="$emit('delete-person', $event)" />
+    <div style="margin-bottom: 20px;">
+      <input type="text" v-model="searchQuery" placeholder="Search by name..." style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;" />
     </div>
-    <EmptyState v-else message="The person list is currently empty." />
+    <div v-if="filteredPersons.length > 0">
+      <PersonCard v-for="person in filteredPersons" :key="person.id" :person="person" @delete="$emit('delete-person', $event)" />
+    </div>
+    <EmptyState v-else message="No persons match the current search." />
   </div>
 </template>
 
@@ -21,6 +25,16 @@ export default {
     persons: {
       type: Array,
       default: () => []
+    }
+  },
+  data() {
+    return {
+      searchQuery: ''
+    }
+  },
+  computed: {
+    filteredPersons() {
+      return this.persons.filter(p => p.name.toLowerCase().includes(this.searchQuery.toLowerCase()));
     }
   }
 }

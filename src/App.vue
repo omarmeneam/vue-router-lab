@@ -16,6 +16,9 @@
               />
             </transition>
           </router-view>
+          <div v-if="errorMessage" style="background-color: #f8d7da; color: #721c24; padding: 15px; border-radius: 4px; margin-top: 20px; text-align: center;">
+            {{ errorMessage }}
+          </div>
         </main>
       </div>
     </div>
@@ -38,7 +41,8 @@ export default {
   },
   data() {
     return {
-      persons: []
+      persons: [],
+      errorMessage: ''
     }
   },
   computed: {
@@ -51,8 +55,12 @@ export default {
     axios.get('http://localhost:3000/persons')
       .then(response => {
         this.persons = response.data;
+        this.errorMessage = '';
       })
-      .catch(err => console.error('Error fetching persons:', err));
+      .catch(err => {
+        console.error('Error fetching persons:', err);
+        this.errorMessage = 'Cannot connect to JSON Server. Please run npm run server or npx json-server --watch db.json --port 3000.';
+      });
   },
   methods: {
     addPerson(person) {
