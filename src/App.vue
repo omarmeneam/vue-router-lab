@@ -1,22 +1,24 @@
 <template>
-  <div class="app-container">
-    <AppSidebar />
-    <div class="main-content">
-      <AppHeader />
-      <main class="content-area">
-        <router-view v-slot="{ Component }">
-          <transition name="fade" mode="out-in">
-            <component 
-              :is="Component" 
-              :persons="persons"
-              :last-person="lastPerson"
-              @add-person="addPerson"
-            />
-          </transition>
-        </router-view>
-      </main>
-      <AppFooter />
+  <div id="app">
+    <AppHeader />
+    <div class="layout">
+      <AppSidebar />
+      <div class="main-content">
+        <main class="content-area">
+          <router-view v-slot="{ Component }">
+            <transition name="fade" mode="out-in">
+              <component 
+                :is="Component" 
+                :persons="persons"
+                :last-person="lastPerson"
+                @add-person="addPerson"
+              />
+            </transition>
+          </router-view>
+        </main>
+      </div>
     </div>
+    <AppFooter />
   </div>
 </template>
 
