@@ -4,11 +4,16 @@
     <div class="main-content">
       <AppHeader />
       <main class="content-area">
-        <router-view
-          :persons="persons"
-          :last-person="lastPerson"
-          @add-person="addPerson"
-        />
+        <router-view v-slot="{ Component }">
+          <transition name="fade" mode="out-in">
+            <component 
+              :is="Component" 
+              :persons="persons"
+              :last-person="lastPerson"
+              @add-person="addPerson"
+            />
+          </transition>
+        </router-view>
       </main>
       <AppFooter />
     </div>
