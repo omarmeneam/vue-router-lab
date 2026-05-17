@@ -4,11 +4,11 @@
     <div class="main-content">
       <AppHeader />
       <main class="content-area">
-        <AddPersonView @add-person="addPerson" />
-        <hr style="margin: 20px 0;">
-        <LastPersonView :last-person="lastPerson" />
-        <hr style="margin: 20px 0;">
-        <PersonListView :persons="persons" />
+        <router-view
+          :persons="persons"
+          :last-person="lastPerson"
+          @add-person="addPerson"
+        />
       </main>
       <AppFooter />
     </div>
@@ -19,19 +19,13 @@
 import AppSidebar from './components/AppSidebar.vue'
 import AppHeader from './components/AppHeader.vue'
 import AppFooter from './components/AppFooter.vue'
-import AddPersonView from './views/AddPersonView.vue'
-import LastPersonView from './views/LastPersonView.vue'
-import PersonListView from './views/PersonListView.vue'
 
 export default {
   name: 'App',
   components: {
     AppSidebar,
     AppHeader,
-    AppFooter,
-    AddPersonView,
-    LastPersonView,
-    PersonListView
+    AppFooter
   },
   data() {
     return {
