@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import AppSidebar from './components/AppSidebar.vue'
 import AppHeader from './components/AppHeader.vue'
 import AppFooter from './components/AppFooter.vue'
@@ -47,32 +48,22 @@ export default {
     }
   },
   mounted() {
-    fetch('http://localhost:3000/persons')
-      .then(response => response.json())
-      .then(data => {
-        this.persons = data;
+    axios.get('http://localhost:3000/persons')
+      .then(response => {
+        this.persons = response.data;
       })
       .catch(err => console.error('Error fetching persons:', err));
   },
   methods: {
     addPerson(person) {
-      fetch('http://localhost:3000/persons', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(person)
-      })
-        .then(response => response.json())
-        .then(data => {
-          this.persons.push(data);
+      axios.post('http://localhost:3000/persons', person)
+        .then(response => {
+          this.persons.push(response.data);
         })
         .catch(err => console.error('Error adding person:', err));
     },
     deletePerson(id) {
-      fetch(`http://localhost:3000/persons/${id}`, {
-        method: 'DELETE'
-      })
+      axios.delete(`http://localhost:3000/persons/${id}`)
         .then(() => {
           this.persons = this.persons.filter(p => p.id !== id);
         })
